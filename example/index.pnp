@@ -1,0 +1,27 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>Title Goes Here</title>
+</head>
+<body>
+  <p>
+    <?pnp
+      return 'Welcome to my <i>sweet</i> page! Hey pat'
+    ?>
+  </p>
+  <p>My Users</p>
+  <table>
+    <tr>
+      <th>id</th>
+      <th>Name</th>
+    </tr>
+    <?pnp
+      const db = require('./db')
+      return db.getUsers()
+        .then(users => users.map(user =>
+          `<tr><td>${user.id}</td><td>${user.name}</td></tr>`))
+    ?>
+  </table>
+</body>
+</html>
